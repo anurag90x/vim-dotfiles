@@ -14,4 +14,6 @@ update:
 	git submodule foreach git pull origin master
 
 symlink:
-	ln -sf ~+/vimrc ~/.vimrc
+	ln -sf ~/vim-config/.vimrc ~/.vimrc
+	ln -sf ~/vim-config/autoload ~/.vim/autoload
+	ln -sf ~/vim-config/bundle ~/.vim/bundle
