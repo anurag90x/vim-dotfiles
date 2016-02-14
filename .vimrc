@@ -1,6 +1,8 @@
 set nocompatible
 set swapfile
 set dir=~/tmp
+let mapleader=","
+set pastetoggle=<F11>
 "-----------------------------------------------------------
 " Indentation
 filetype plugin on
@@ -27,33 +29,9 @@ syntax on
 
 " Colorscheme
 colorscheme desert
- 
- 
-"------------------------------------------------------------
-" Must have options {{{1
-"
-" These are highly recommended options.
- 
-" Vim with default settings does not allow easy switching between multiple files
-" in the same editor window. Users can use multiple split windows or multiple
-" tab pages to edit multiple files, but it is still best to enable an option to
-" allow easier switching between files.
-"
-" One such option is the 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer
-" crashes.
+
+" Allow for switching between buffers without saving
 set hidden
- 
-" Note that not everyone likes working this way (with the hidden option).
-" Alternatives include using tabs or split windows instead of re-using the same
-" window as mentioned above, and/or either of the following options:
-" set confirm
-" set autowriteall
  
 " Better command-line completion
 set wildmenu
@@ -66,12 +44,7 @@ set showcmd
 " mapping of <C-L> below)
 set hlsearch
 nnoremap <F3> :noh<CR>
- 
-" Modelines have historically been a source of security vulnerabilities. As
-" such, it may be a good idea to disable them and use the securemodelines
-" script, <http://www.vim.org/scripts/script.php?script_id=1876>.
-" set nomodeline
- 
+nmap <silent> ,/ :nohlsearch<CR>
  
 "------------------------------------------------------------
 " Usability options {{{1
@@ -129,21 +102,6 @@ set number
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
  
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
-
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
- 
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
- 
-"------------------------------------------------------------
-
 "------------------------------------------------------------
 " Word wrap
 
