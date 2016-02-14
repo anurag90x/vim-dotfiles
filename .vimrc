@@ -99,6 +99,12 @@ set notimeout ttimeout ttimeoutlen=200
 :set nolist  " list disables linebreak
 
 "------------------------------------------------------------
+" Special key mappings
+nnoremap j gj
+nnoremap k gk
+nnoremap ; :
+
+"------------------------------------------------------------
 " Split navigation
 "
 nnoremap <C-J> <C-W><C-J>
