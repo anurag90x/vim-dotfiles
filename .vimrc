@@ -46,14 +46,7 @@ set hlsearch
 nnoremap <F3> :noh<CR>
 nmap <silent> ,/ :nohlsearch<CR>
  
-"------------------------------------------------------------
-" Usability options {{{1
-"
-" These are options that users frequently set in their .vimrc. Some of them
-" change Vim's behaviour in ways which deviate from the true Vi way, but
-" which are considered to add usability. Which, if any, of these options to
-" use is very much a personal preference, but they are harmless.
- 
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
@@ -83,10 +76,6 @@ set confirm
  
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
- 
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
 set t_vb=
  
 " Enable use of the mouse for all modes
@@ -125,8 +114,8 @@ execute pathogen#infect()
 
 "------------------------------------------------------------
 " NerdTree
-map <C-n> :NERDTreeToggle<CR>
 set modifiable
+map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 30
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.jshint$']
 "------------------------------------------------------------
@@ -179,5 +168,6 @@ let g:flake8_cmd="/usr/local/bin/flake8"
 "------------------------------------------------------------
 " rubocop 
 
-autocmd FileType ruby  map <buffer> <C-f> :call RuboCop()<CR>
 let g:vimrubocop_config = '/Volumes/fresh/masterlock/.rubocop.yml'
+let g:vimrubocop_keymap = 0
+autocmd FileType ruby  map <buffer> <C-f> :RuboCop<CR>
