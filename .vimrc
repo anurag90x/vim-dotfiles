@@ -103,6 +103,9 @@ set notimeout ttimeout ttimeoutlen=200
 nnoremap j gj
 nnoremap k gk
 nnoremap ; :
+nnoremap n ;
+nnoremap <Up> 5k
+nnoremap <Down> 5j
 
 "------------------------------------------------------------
 " Split navigation
