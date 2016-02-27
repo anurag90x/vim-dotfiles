@@ -31,3 +31,6 @@
 [submodule "bundle/vim-gutentags"]
         path = bundle/vim-gutentags
         url = https://github.com/ludovicchabant/vim-gutentags
+[submodule "bundle/syntastic"]
+        path = bundle/syntastic
+        url = https://github.com/scrooloose/syntastic

@@ -106,6 +106,7 @@ nnoremap ; :
 nnoremap n ;
 nnoremap <Up> 5k
 nnoremap <Down> 5j
+nnoremap <leader>p :CtrlP<CR>
 
 "------------------------------------------------------------
 " Split navigation
@@ -180,3 +181,14 @@ let g:flake8_cmd="/usr/local/bin/flake8"
 let g:vimrubocop_config = '/Volumes/fresh/masterlock/.rubocop.yml'
 let g:vimrubocop_keymap = 0
 autocmd FileType ruby  map <buffer> <C-f> :RuboCop<CR>
+
+"------------------------------------------------------------
+" Syntastic
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
