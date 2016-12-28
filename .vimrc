@@ -1,19 +1,22 @@
+
 set nocompatible
 set swapfile
 set dir=~/tmp
 let mapleader=","
+set nocompatible
 set pastetoggle=<F11>
 "-----------------------------------------------------------
 " Indentation
-filetype plugin on
 set expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 
+autocmd FileType groovy setlocal shiftwidth=4 tabstop=4 
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 
 autocmd FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2 
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 
 autocmd FileType html.handlebars setlocal shiftwidth=2 tabstop=2 
 autocmd FileType exs setlocal shiftwidth=2 tabstop=2 
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2 
  
 "-----------------------------------------------------------
 " Syntax highlighting
@@ -28,7 +31,8 @@ autocmd BufWritePre *.js,*.rb,*.py :%s/\s\+$//e
 syntax on
 
 " Colorscheme
-colorscheme desert
+set background=dark
+colorscheme monokai
 
 " Allow for switching between buffers without saving
 set hidden
@@ -104,9 +108,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ; :
 nnoremap n ;
+nnoremap ;gs :Gstatus<CR>
+nnoremap ;gc :Gcommit<CR>
 nnoremap <Up> 5k
 nnoremap <Down> 5j
-nnoremap <leader>p :CtrlP<CR>
 
 "------------------------------------------------------------
 " Split navigation
@@ -117,17 +122,46 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
-"------------------------------------------------------------
-" Pathogen
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>a :Ack
 
-execute pathogen#infect()
+"
+"------------------------------------------------------------
+" Plug
+
+call plug#begin('~/.vim/bundle')
+
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+
+Plug 'mileszs/ack.vim'
+
+Plug 'jlanzarotta/bufexplorer'
+
+Plug 'kien/ctrlp.vim'
+
+Plug 'vim-syntastic/syntastic'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'michaeljsmith/vim-indent-object'
+
+" Initialize plugin system
+call plug#end()
 
 "------------------------------------------------------------
 " NerdTree
+
+
 set modifiable
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 30
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.jshint$']
+
 "------------------------------------------------------------
 " Airline
 
@@ -141,7 +175,31 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "------------------------------------------------------------
 " CtrlP
 
-set wildignore+=*/node_modules/*,*/assets/*,*/tmp/*,*.so,*.swp,*.zip,*.svg,*.jpg,*.png,*.pyc,*.jshint,*jscs,*/vendor/*
+set wildignore+=*/node_modules/*,*/assets/*,*/tmp/*,*.so,*.swp,*.zip,*.svg,*.jpg,*.png,*.pyc,*.jshint,*jscs,*/vendor/*,*/async-disk-cache/*,*/bower_components/*
+
+"------------------------------------------------------------
+" Mustache
+
+let g:mustache_operators = 1
+
+"------------------------------------------------------------
+" Syntastic 
+"
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_rubocop_exec = '/usr/bin/rubocop'
+
+let g:synstastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "------------------------------------------------------------
 " Bclose
@@ -164,31 +222,3 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
-
-let g:mustache_operators = 1
-
-"------------------------------------------------------------
-" flake8 
-
-autocmd FileType python map <buffer> <C-f> :call Flake8()<CR>
-let g:flake8_show_in_file = 1
-let g:flake8_cmd="/usr/local/bin/flake8"
-
-
-"------------------------------------------------------------
-" rubocop 
-
-let g:vimrubocop_config = '/Volumes/fresh/masterlock/.rubocop.yml'
-let g:vimrubocop_keymap = 0
-autocmd FileType ruby  map <buffer> <C-f> :RuboCop<CR>
-
-"------------------------------------------------------------
-" Syntastic
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
