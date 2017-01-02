@@ -155,7 +155,6 @@ call plug#end()
 "------------------------------------------------------------
 " NerdTree
 
-
 set modifiable
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 30
