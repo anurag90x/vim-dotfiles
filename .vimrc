@@ -122,13 +122,14 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>sl :Lines<CR>
+nnoremap <leader>sb :BLines<CR>
+nnoremap <leader>b :Buffers<CR>
 
-nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>a :Ack
-
-"
 "------------------------------------------------------------
 " Plug
+"------------------------------------------------------------
 
 call plug#begin('~/.vim/bundle')
 
@@ -139,17 +140,14 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
-Plug 'mileszs/ack.vim'
-
-Plug 'jlanzarotta/bufexplorer'
-
-Plug 'kien/ctrlp.vim'
-
 Plug 'vim-syntastic/syntastic'
 
 Plug 'tpope/vim-fugitive'
 
 Plug 'michaeljsmith/vim-indent-object'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -194,11 +192,36 @@ let g:syntastic_ruby_rubocop_exec = '/usr/bin/rubocop'
 let g:synstastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
 
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 "------------------------------------------------------------
+" FZF
+"------------------------------------------------------------
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '40' }
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+
+" Insert mode completion
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+"-----------------------------------------------------------s
 " Bclose
+"-----------------------------------------------------------
+
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
    let l:currentBufNum = bufnr("%")
