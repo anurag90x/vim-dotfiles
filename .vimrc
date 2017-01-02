@@ -116,13 +116,25 @@ nnoremap <Down> 5j
 
 "------------------------------------------------------------
 " Split navigation
-"
+"------------------------------------------------------------
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"------------------------------------------------------------
+" Plug bindings
+"------------------------------------------------------------
+
+nnoremap <leader>pi :PlugInstall<CR>
+nnoremap <leader>pu :PlugUpdate<CR>
+
+"------------------------------------------------------------
+" FZF bindings 
+"------------------------------------------------------------
 nnoremap <leader>f :FZF<CR>
+nnoremap <leader>a :Ag<CR>
 nnoremap <leader>sl :Lines<CR>
 nnoremap <leader>sb :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -148,6 +160,8 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " Initialize plugin system
 call plug#end()
