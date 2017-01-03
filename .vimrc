@@ -156,7 +156,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'puremourning/YouCompleteMe', { 'do': './install.py', 'branch': 'fast-start' }
 
 " Initialize plugin system
 call plug#end()
