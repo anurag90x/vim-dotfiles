@@ -42,13 +42,8 @@ set wildmenu
 " Show partial commands in the last line of the screen
 set showcmd
 
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-
-" mapping of <C-L> below)
 set hlsearch
-nnoremap <F3> :noh<CR>
 nmap <silent> ,/ :nohlsearch<CR>
-
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -106,7 +101,6 @@ set notimeout ttimeout ttimeoutlen=200
 nnoremap j gj
 nnoremap k gk
 nnoremap ; :
-nnoremap n ;
 nnoremap ;gs :Gstatus<CR>
 nnoremap ;gc :Gcommit<CR>
 nnoremap ;gw :Gwrite<CR>
@@ -129,6 +123,7 @@ nnoremap <C-H> <C-W><C-H>
 
 nnoremap <leader>pi :PlugInstall<CR>
 nnoremap <leader>pu :PlugUpdate<CR>
+nnoremap <leader>pc :PlugClean<CR>
 
 "------------------------------------------------------------
 " FZF bindings 
