@@ -101,6 +101,7 @@ set notimeout ttimeout ttimeoutlen=200
 nnoremap j gj
 nnoremap k gk
 nnoremap ; :
+nnoremap ' ;
 nnoremap ;gs :Gstatus<CR>
 nnoremap ;gc :Gcommit<CR>
 nnoremap ;gw :Gwrite<CR>
