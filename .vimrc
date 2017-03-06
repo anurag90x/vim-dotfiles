@@ -148,8 +148,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
-Plug 'vim-syntastic/syntastic'
-
 Plug 'tpope/vim-fugitive'
 
 Plug 'michaeljsmith/vim-indent-object'
@@ -157,7 +155,9 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'puremourning/YouCompleteMe', { 'do': './install.py', 'branch': 'fast-start' }
+Plug 'w0rp/ale'
+
+"Plug 'puremourning/YouCompleteMe', { 'do': './install.py', 'branch': 'fast-start' }
 
 " Initialize plugin system
 call plug#end()
@@ -195,14 +195,31 @@ let g:mustache_operators = 1
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_ruby_rubocop_exec = '/usr/bin/rubocop'
+"let g:syntastic_ruby_checkers = ['rubocop']
+"let g:syntastic_ruby_rubocop_exec = '/Library/Ruby/Gems/2.0.0/gems/rubocop-0.38.0/bin/rubocop'
+"
+"let g:synstastic_python_checkers = ['flake8']
+"let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
+"
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 1
 
-let g:synstastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
+"------------------------------------------------------------
+" Ale
+"------------------------------------------------------------
+"
+" Configure a.l.e. syntax checking
+ let g:ale_linters = {
+ \   'javascript': ['eslint'],
+ \   'python': ['flake8'],
+ \}
+ " Only lint on save.
+ let g:ale_lint_on_save = 1
+ let g:ale_lint_on_text_changed = 0
 
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+ " Customize flags
+ let g:ale_sign_error = '✖︎'
+ let g:ale_sign_warning = '❢'
 
 "------------------------------------------------------------
 " FZF
