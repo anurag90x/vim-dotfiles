@@ -4,6 +4,8 @@ set dir=~/tmp
 let mapleader=","
 set nocompatible
 set pastetoggle=<F11>
+set clipboard^=unnamed
+
 "-----------------------------------------------------------
 " Indentation
 set expandtab
@@ -16,6 +18,10 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html.handlebars setlocal shiftwidth=2 tabstop=2
 autocmd FileType exs setlocal shiftwidth=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
+autocmd FileType xsd setlocal shiftwidth=2 tabstop=2
+autocmd FileType xslt setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType j2 setlocal shiftwidth=4 tabstop=4
 
 "-----------------------------------------------------------
 " Syntax highlighting
