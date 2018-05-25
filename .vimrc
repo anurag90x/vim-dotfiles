@@ -4,7 +4,6 @@ set dir=~/tmp
 let mapleader=","
 set nocompatible
 set pastetoggle=<F11>
-set clipboard^=unnamed
 
 "-----------------------------------------------------------
 " Indentation
@@ -21,7 +20,14 @@ autocmd FileType scss setlocal shiftwidth=2 tabstop=2
 autocmd FileType xsd setlocal shiftwidth=2 tabstop=2
 autocmd FileType xslt setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType j2 setlocal shiftwidth=4 tabstop=4
+autocmd FileType jinja setlocal shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType rs setlocal shiftwidth=2 tabstop=2
+" ------------------------------------------------
+"
+au FileType php setl noexpandtab
+autocmd FileType php setlocal shiftwidth=4 tabstop=4
+
 
 "-----------------------------------------------------------
 " Syntax highlighting
@@ -110,6 +116,7 @@ nnoremap ; :
 nnoremap ' ;
 nnoremap ;gs :Gstatus<CR>
 nnoremap ;gc :Gcommit<CR>
+nnoremap ;gca :Gcommit --amend<CR>
 nnoremap ;gw :Gwrite<CR>
 nnoremap ;gr :Gread<CR>
 nnoremap <Up> 5k
@@ -136,7 +143,7 @@ nnoremap <leader>pc :PlugClean<CR>
 " FZF bindings 
 "------------------------------------------------------------
 nnoremap <leader>f :FZF<CR>
-nnoremap <leader>a :Ag<CR>
+nnoremap <leader>a :Ack<space>
 nnoremap <leader>sl :Lines<CR>
 nnoremap <leader>sb :BLines<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -151,6 +158,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mileszs/ack.vim'
 
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
@@ -162,6 +170,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'w0rp/ale'
+
+Plug 'chase/vim-ansible-yaml'
+
+Plug 'lepture/vim-jinja'
+
+Plug 'rust-lang/rust.vim'
 
 "Plug 'puremourning/YouCompleteMe', { 'do': './install.py', 'branch': 'fast-start' }
 
@@ -192,25 +206,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:mustache_operators = 1
 
 "------------------------------------------------------------
-" Syntastic
-"
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-
-"let g:syntastic_ruby_checkers = ['rubocop']
-"let g:syntastic_ruby_rubocop_exec = '/Library/Ruby/Gems/2.0.0/gems/rubocop-0.38.0/bin/rubocop'
-"
-"let g:synstastic_python_checkers = ['flake8']
-"let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
-"
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 1
-
-"------------------------------------------------------------
 " Ale
 "------------------------------------------------------------
 "
@@ -218,6 +213,8 @@ let g:mustache_operators = 1
  let g:ale_linters = {
  \   'javascript': ['eslint'],
  \   'python': ['flake8'],
+ \   'ruby': ['rubocop'],
+ \   'yaml': ['yaml-lint']
  \}
  " Only lint on save.
  let g:ale_lint_on_save = 1
@@ -249,6 +246,12 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 " Insert mode completion
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+"-----------------------------------------------------------s
+" Ack
+"-----------------------------------------------------------
+
+let g:ackprg = 'ag --vimgrep'
 
 "-----------------------------------------------------------s
 " Bclose
